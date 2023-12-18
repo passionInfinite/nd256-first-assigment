@@ -1,0 +1,47 @@
+Solution Task0.py
+For this task the worst case runtime complexity is exactly same as best case
+as we are directly retrieving the elements from the memory using indexes. so it will be
+O(1)
+
+Solution Task1.py
+For this task solution we are iterating loop twice
+once for calls and another one for texts.
+Both the loop has to go through all the records (n) but they are not nested loops.
+so the overall runtime complexity will be O(n+n) = O(2n) -> O(n)
+One thing that we are not considering in this is search that it has to perform in the list we generate for unique calls and texts.
+But if we conside that as m then the runtime complexity will be
+O(nm+nm) => O(2nm) -> O(nm) where n is total number of records for both calls and texts
+and m is the size of the unique calls/texts numbers list.
+
+Solution Task2.py
+For this task we are building a log book to actually collect records for both incoming and outgoing
+with adding duration for each iteration. This loop runs for all the records of calls.
+so for this loop it is: O(n) where n is the total number of the records in calls.csv
+We are running a loop through the log book to find out the highest duration with number.
+so for this loop it is: O(m) where m is the records inside the log_book.
+This value of m will be equal to 2n because the calls are made 1-1
+so for this loop: O(m)=> O(2n)
+Now both the loops are running independently (not nested).
+so total worstcase runtime complexity will be:
+O(n+2n) => O(3n) -> O(n)
+
+
+Solution Task3.py
+This solution asks to solve 2 parts.
+First Part:
+For this part we are iterating through all the call records. 
+and building the set of records with respective code prefix that we parse for the incoming side.
+So the runtime complexity for this will be O(n) where n is the number of call records.
+
+Second Part:
+For this part we reuse the set that we have build. This set also consists of the total counts.
+Due to this set we didn't have to reiterate through the call records. We directly get the count from the set and get the percentage ratio.
+So the runtime complexity for this will be constant: O(1)
+
+So for overall solution the runtime complexity becomes:
+O(n+1)
+
+Solution Task4.py
+For this task we needed to gather the list of telemarketers number.
+In order to do so we iterate over all the call records and check whether the call was being made by the telemarketer (by checking prefix).
+So the runtime complexity will be O(n) where n is the total number of call records that needs to be go through.
