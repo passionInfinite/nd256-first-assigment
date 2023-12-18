@@ -46,15 +46,38 @@ The percentage should have 2 decimal digits
 """
 
 # This variable will hold codes/prefixes with the count
-set_of_codes_prefixes={}
+set_of_codes_prefixes = {}
 
+
+def updateCountInSet(key):
+    if key in set_of_codes_prefixes:
+        set_of_codes_prefixes[key] += 1
+    else:
+        set_of_codes_prefixes[key] = 1
+
+
+def parseCodePrefix(number):
+    if number.startswith("(080)"):
+        updateCountInSet("(080)")
+    elif "(" not in number and ")" not in number and number[5] == ' ':
+        prefix = number[0:5]
+        updateCountInSet(prefix)
+    elif number.startswith("140"):
+        updateCountInSet("140")
 
 
 for record in calls:
     if record[0].startswith("(080)"):
-        if record[1].startswith("(080)"):
-            if "(080)" not in set_of_codes_prefixes:
-                set_of_codes_prefixes["(080)"] = 1
-            else:
-                set_of_codes_prefixes['(080)'] += 1
-            
+        parseCodePrefix(record[1])
+
+
+# Solutin A: Print the set generated
+print("The numbers called by people in Bangalore have codes:")
+for code in sorted(set_of_codes_prefixes.keys()):
+    print(code)
+
+
+# Solution B
+percentage = (set_of_codes_prefixes["(080)"] /
+              sum(set_of_codes_prefixes.values())) * 100
+print("{:.2f} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(percentage))
