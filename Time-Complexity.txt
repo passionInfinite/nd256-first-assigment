@@ -36,10 +36,10 @@ So the runtime complexity for this will be O(n) where n is the number of call re
 Second Part:
 For this part we reuse the set that we have build. This set also consists of the total counts.
 Due to this set we didn't have to reiterate through the call records. We directly get the count from the set and get the percentage ratio.
-So the runtime complexity for this will be constant: O(1)
+So the runtime complexity for this will be constant: O(1) but we are sorting the keys of set using the sorted function which has complexity of logn
 
 So for overall solution the runtime complexity becomes:
-O(n+1)
+O(nlogn)
 
 Solution Task4.py
 For this task we needed to gather the list of telemarketers number.

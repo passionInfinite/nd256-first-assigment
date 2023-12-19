@@ -58,9 +58,13 @@ def updateCountInSet(key):
 
 def parseCodePrefix(number):
     if number.startswith("(080)"):
-        updateCountInSet("(080)")
+        updateCountInSet("080")
     elif "(" not in number and ")" not in number and number[5] == ' ':
         prefix = number[0:4]
+        updateCountInSet(prefix)
+    elif number.startswith("(0"):
+        indexOfClosingBracket = number.find(')')
+        prefix = number[1:indexOfClosingBracket]
         updateCountInSet(prefix)
     elif number.startswith("140"):
         updateCountInSet("140")
@@ -73,12 +77,12 @@ for record in calls:
         parseCodePrefix(record[1])
 
 
-# Solutin A: Print the set generated
+# Solution A: Print the set generated
 print("The numbers called by people in Bangalore have codes:")
 for code in sorted(set_of_codes_prefixes.keys()):
     print(code)
 
 
 # Solution B
-percentage = (set_of_codes_prefixes["(080)"] / total) * 100
+percentage = (set_of_codes_prefixes["080"] / total) * 100
 print("{:.2f} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(percentage))
