@@ -26,19 +26,19 @@ The list of numbers should be print out one per line in lexicographic order with
 """
 
 telemarketers = set()
+non_telemarketers = set()
 
 for record in calls:
-    if record[0].startswith("140"):
-        telemarketers.add(record[0])
+    telemarketers.add(record[0])
+    non_telemarketers.add(record[1])
 
 # Also check in texts to filter out the telemarketers numbers based on criteria
 # numbers that make outgoing calls but never send texts, receive texts or receive incoming calls.
 for record in texts:
-    if record[0] in telemarketers:
-        telemarketers.discard(record[0])
-    if record[1] in telemarketers:
-        telemarketers.discard(record[1])
+    non_telemarketers.add(record[0])
+    non_telemarketers.add(record[1])
 
-print("These numbers could be telemarketers: ")
+telemarketers = telemarketers.difference(non_telemarketers)
+print("These numbers could be telemarketers:")
 for number in sorted(telemarketers):
     print(number+'\n')

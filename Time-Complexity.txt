@@ -43,5 +43,8 @@ O(n+1)
 
 Solution Task4.py
 For this task we needed to gather the list of telemarketers number.
-In order to do so we iterate over all the call records and check whether the call was being made by the telemarketer (by checking prefix).
-So the runtime complexity will be O(n) where n is the total number of call records that needs to be go through.
+In order to do so we iterate over all the call records and if it is incoming we add it to non telemarketer list otherwise in telemarketers list.
+Similarly for texts we add all those numbers (whether incoming or outgoing) to non telemarketers list.
+So the runtime complexity will be O(n+n) -> O(2n) where n is the total number of call and texts records that needs to be go through.
+At the end we are performing the sorting using sorted function which has complexity of logn
+so overall runtime complexity of this program is O(nlogn).
