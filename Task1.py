@@ -27,27 +27,17 @@ Something which can be improved apart from the requirements in this task.
 """
 
 
-
-total_diff_numbers = 0
-unique_texts_numbers = []
-unique_calls_numbers = []
+unique_numbers = set()
 
 # Check in texts records
 for record in texts:
-    if record[0] not in unique_texts_numbers:
-        unique_texts_numbers.append(record[0])
-        total_diff_numbers += 1
-    if record[1] not in unique_texts_numbers:
-        unique_texts_numbers.append(record[1])
-        total_diff_numbers += 1
+    unique_numbers.add(record[0])
+    unique_numbers.add(record[1])
 
 # Check in call records.
 for record in calls:
-    if record[0] not in unique_calls_numbers:
-        unique_calls_numbers.append(record[0])
-        total_diff_numbers += 1
-    if record[1] not in unique_calls_numbers:
-        unique_calls_numbers.append(record[1])
-        total_diff_numbers += 1
+    unique_numbers.add(record[0])
+    unique_numbers.add(record[1])
 
-print("There are "+str(total_diff_numbers)+" different telephone numbers in the records.")
+print("There are "+str(len(unique_numbers)) +
+      " different telephone numbers in the records.")
